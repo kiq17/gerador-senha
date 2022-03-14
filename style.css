@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f1f5f8;
+}
+
+.conteiner{
+    width: 450px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.wrap{
+    width: 70%;
+    margin: 0 auto;
+}
+
+h3{
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 15px;
+}
+
+.input-copy{
+    border: 2px solid #0075ff;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+i{
+    cursor: pointer;
+}
+
+.senha::before{
+    position: absolute;
+    top: -35px;
+    right: -19px;
+    content: 'Copiado';
+    padding: 5px 8px;
+    border-radius: 45px;
+    background: black;
+    color: white;
+    text-align: center;
+    z-index: 100;
+    display: none;
+}
+
+.senha::after{
+    content: '';
+    position: absolute;
+    top: -20px;
+    background-color: black;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    transform: rotate(45deg);
+    display: none;
+}
+
+.senha.ativado::after, .senha.ativado::before{
+    display: block;
+}
+
+.senha{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+}
+
+p, label{
+    font-size: 15px;
+}
+
+p span{
+    font-size: 20px;
+}
+
+#range{
+    margin-bottom: 30px;
+}
+
+.opcao{
+    margin-top: 15px;
+}
+
+.gerador{
+    margin: 20px auto;
+    padding: 10px;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    background-color: #2588fa;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.gerador:hover{
+    background-color: #50a1fd;
+}

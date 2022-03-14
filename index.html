@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="conteiner">
+        <h3>Gerador de Senha</h3>
+        <div class="input-copy wrap">
+            <div class="senha">
+                <span id="pw-text">Zf0#vl3O_92C</span>
+                <i class="fas fa-copy"></i>
+            </div>
+        </div>
+        <input class="wrap" id="range" type="range" min="4" max="20" step="1" onchange="mostrarVal(this.value)">
+        <p class="display-pw-size wrap">Tamanho da senha: <span>12</span></p>
+
+        <div class="opcao wrap">
+            <input id="upper" type="checkbox" checked/>
+            <label for="upper">Adicionar letra maiusculas</label>
+        </div>
+        <div class="opcao wrap">
+            <input id="lower" type="checkbox" checked/>
+            <label for="lower">Adicionar letra minusculas</label>
+        </div>
+        <div class="opcao wrap">
+            <input id="number" type="checkbox" checked/>
+            <label for="number">Adicionar números</label>
+        </div>
+        <div class="opcao wrap">
+            <input id="symbol" type="checkbox" checked/>
+            <label for="symbol">Adicionar símbulos</label>
+        </div>
+        <button class="gerador wrap"> 
+            Gerar Senha
+        </button>
+    </div>
+</body>
+    <script src="main.js"></script>
+</html>
