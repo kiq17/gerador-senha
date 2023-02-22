@@ -5,8 +5,6 @@ const copiar = document.querySelector('i')
 const sessaoInput = document.querySelector('.senha')
 
 
-/* console.log(copiar) */
-
 const maiusculo = document.getElementById('upper')
 const minusculo = document.getElementById('lower')
 const numero = document.getElementById('number')
