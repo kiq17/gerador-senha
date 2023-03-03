@@ -1,6 +1,16 @@
-# Gerador de senha
+<h1 align="center">Gerador de senha</h1>
 
-Funções:
+## :rocket: Tecnologias ##
+
+O que foi usado neste projeto:
+
+- HTML
+- CSS
+- JavaScript
+
+
+## :sparkles: Funções ##
+
 <ul>
 <li>Possibilidade de copiar a senha</li>
 <li>Criar uma senha entre 4 a 20 caracteres</li>
