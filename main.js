@@ -1,102 +1,91 @@
-const tamanho = document.querySelector('.display-pw-size span')
-const btnGerador = document.querySelector('.gerador')
-const inputResultado = document.querySelector('#pw-text')
-const copiar = document.querySelector('i')
-const sessaoInput = document.querySelector('.senha')
+/* elementos HTML */
+const inputRange = document.getElementById("range");
+const spanSize = document.querySelector(".display-pw-size span");
+const minusculo = document.getElementById("lower");
+const maiusculo = document.getElementById("upper");
+const simbolo = document.getElementById("symbol");
+const numero = document.getElementById("number");
+const btnSubmit = document.querySelector(".gerador");
+const mostarSenha = document.getElementById("pw-text");
+const copiar = document.querySelector(".senha");
+
+/* variaveis e constantes */
+let tamanhoSenha = "";
+let senhaCompleta = "";
+const letrasMaiusculas = "QWERTYUIOPASDFGHJKLÇZXCVBNM";
+const letrasMinusculas = letrasMaiusculas.toLowerCase();
+const simbolos = "!@#$&*()-+,.><{}[]=_|/";
+const numeros = "1234567890";
+
+/* eventos */
+inputRange.addEventListener("change", (e) => {
+    tamanhoSenha = e.target.value;
+    spanSize.innerHTML = e.target.value;
+});
+
+btnSubmit.addEventListener("click", () => {
+    escolherOpcao();
+    mostarSenha.innerHTML = senhaCompleta;
+});
+
+copiar.addEventListener("click", copiarSenha);
 
 
-const maiusculo = document.getElementById('upper')
-const minusculo = document.getElementById('lower')
-const numero = document.getElementById('number')
-const simbulo = document.getElementById('symbol')
+/* inserir caracteres de acordo com o que foi seelcionado pelo usuário */
+function escolherOpcao() {
+    senhaCompleta = ""
+    if (numero.checked) senhaCompleta += getNumero();
+    if (simbolo.checked) senhaCompleta += getSimbolo();
+    if (minusculo.checked) senhaCompleta += getLetraMinuscula();
+    if (maiusculo.checked) senhaCompleta += getLetraMaiuscula();
 
-
-const letraMaior = 'QAZWSXEDCRFVTGBYHNUJMIKOLPÇ'
-const letraMenor = 'qazwsxedcrfvtgbyhnujmikolpç'
-const num = '0123456789'
-const sym = '/*-,<>.!@#$&*()=+^`[]{};'
-
-let senhaCompleta = ''
-
-eventos();
-function eventos() {
-    btnGerador.addEventListener('click', gerarSenha)
-    copiar.addEventListener('click', textoCopiado)
+    if (numero.checked || simbolo.checked || minusculo.checked || maiusculo.checked) {
+        completarSenha();
+    } else {
+        alert("Selecione uma opção");
+    }
 }
 
-function textoCopiado(){
-    const senha = inputResultado.textContent
+/* completar a senha até o tamanho escolhido */
+function completarSenha() {
+    while (senhaCompleta.length < Number(tamanhoSenha)) {
+        let random = Math.floor(Math.random() * 4);
+        if (numero.checked && random == 0) senhaCompleta += getNumero();
+        if (simbolo.checked && random == 1) senhaCompleta += getSimbolo();
+        if (minusculo.checked && random == 2) senhaCompleta += getLetraMinuscula();
+        if (maiusculo.checked && random == 3) senhaCompleta += getLetraMaiuscula();
+    }
+}
 
-     if(senha){
-        const texteArea = document.createElement('textarea')
-        texteArea.value = senha
-        document.body.appendChild(texteArea)
-        texteArea.select()
+
+function copiarSenha() {
+    if(senhaCompleta.length > 0){
+        const textArea = document.createElement("textarea");
+        textArea.value = senhaCompleta;
+        document.body.append(textArea);
+        textArea.select()
         document.execCommand('copy')
-        texteArea.remove();
-        sessaoInput.classList.add('ativado')
+        textArea.remove();
+        copiar.classList.add('ativado')
 
         setTimeout(()=>{
-            sessaoInput.classList.remove('ativado')
+            copiar.classList.remove('ativado')
         }, 500)
-    } 
-}
-
-
-
-function gerarSenha() {
-    senhaCompleta = ''
-    if (maiusculo.checked) senhaCompleta += todasMaiores()
-    if (minusculo.checked) senhaCompleta += todasMenores()
-    if (simbulo.checked) senhaCompleta += todasSimb()
-    if (numero.checked) senhaCompleta += todasNum()
-
-    if(maiusculo.checked || minusculo.checked || numero.checked || simbulo.checked ){
-
-        completarSenha();
-    } else{
-        alert('Selecione algum parâmetro para que sua senha seja criada')
     }
 }
 
-
-
-function completarSenha() {
-    while (senhaCompleta.length < parseInt(tamanho.textContent)) {
-        const numAleatorio = getRandom()
-        if (maiusculo.checked && numAleatorio === 0) senhaCompleta += todasMaiores()
-        if (minusculo.checked && numAleatorio === 1) senhaCompleta += todasMenores()
-        if (numero.checked && numAleatorio === 2) senhaCompleta += todasNum()
-        if (simbulo.checked && numAleatorio === 3) senhaCompleta += todasSimb()
-    }
-
-    inputResultado.innerHTML = senhaCompleta
+function getLetraMaiuscula() {
+    return letrasMaiusculas[Math.floor(Math.random() * letrasMaiusculas.length)];
 }
 
-function aleatorio(max) {
-    return Math.floor(Math.random() * max)
+function getLetraMinuscula() {
+    return letrasMinusculas[Math.floor(Math.random() * letrasMinusculas.length)];
 }
 
-function getRandom(){
-    return Math.floor(Math.random() * 4)
+function getSimbolo() {
+    return simbolos[Math.floor(Math.random() * simbolos.length)];
 }
 
-function todasMaiores() {
-    return letraMaior[aleatorio(letraMaior.length)]
-}
-
-function todasMenores() {
-    return letraMenor[aleatorio(letraMenor.length)]
-}
-
-function todasSimb() {
-    return sym[aleatorio(sym.length)]
-}
-
-function todasNum() {
-    return num[aleatorio(num.length)]
-}
-
-function mostrarVal(e) {
-    tamanho.textContent = e
+function getNumero() {
+    return numeros[Math.floor(Math.random() * numeros.length)];
 }
